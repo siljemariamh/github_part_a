@@ -1,0 +1,46 @@
+---
+title: "exam_text"
+author: "Silje Maria M. Høydal"
+format: html
+editor: visual
+---
+
+## Part A - Reproducible Research
+
+**Link to article:**
+
+https://doi.org/10.1111/icad.12589
+
+**Link to download raw data:**
+
+https://datadryad.org/stash/dataset/doi:10.5061/dryad.qjq2bvqhk
+
+For this part of the exam, I have used the "watermelon_net.csv" file. I was unsure if I was allowed to upload the dataset to GitHub, and therefore I chose to include the link here instead.\
+
+1.  **Continue with your attempt to reproduce part of a paper from archived data from the first practical. Archive the code and text on GitHub and include the link to your repo in your answer here.**
+
+I have chosen to partly reproduce an article discussing a decline in crop visitation by wild bees over an 8-year period. "Crop visitation by wild bees declines over an 8-year time series: A dramatic trend, or just dramatic between-year variation?" is an article published in the journal "Insect Conservation and Diversity" and is written by three authors: Andrew H. Aldercotte, Dylan T. Simpson, and Rachael Winfree (Aldercotte et al., 2022). Their results show that over the 8 years the study was active, there was a 58% decline in wild bee visitation to crop flowers. Most types of wild bees showed similar declines in both the visitation and the net capture data; bumble bees, however, declined by 56% in the visitation data but showed no change in net capture rates. Trends in pollination services, that is, estimated pollen deposition, largely followed the trends in visitation and net capture rates. In addition, they detected a large and significant decline in wild bees when they used generalised linear mixed models (GLMMs), and permutation analyses that account for non-directional variation in abundance were non-significant, demonstrating the challenge of identifying and describing trends in highly variable populations (Aldercotte et al., 2022).
+
+I will try to reproduce the parts of this article comprising the netted bees data, and try to perform the same GLMMs as they did. Further, I will try and illustrate their net capture data (see figure 3 in their article) by using the raw data.
+
+### Discussion:
+
+2.  **Discuss how well you managed to reproduce the part of paper you were working on and what challenges you faced. If you looked at two papers discuss both.**
+
+For this task, I chose to try and reproduce parts of the article " "Crop visitation by wild bees declines over an 8-year time series: A dramatic trend, or just dramatic between-year variation?" (Aldercotte et al., 2022). In the initial phase of trying to clean the data, it was really hard to figure out exactly what they did, or if they did any convergence of the raw data prior to analysis. Therefore I had to use best practice of what I have learned to try and clean the data as good as possible, and try to the best of my ability to figure out How and What to extract from the raw data. But, I feel like I did a decent enough job to extract the correct columns and values. \
+\
+Further, I needed to filter out and summarise all bee groups to get a count. In their dataset, each observation/netted bee is a count, so therefore I needed a numeric value of all the netted bees. It might be a little tricky, but then I wanted to merge everything in a new dataset with columns representing counts for all bee groups. This made it easier to make a model for each bee group, which was what the authors did for their glmm. The authors of the article used the *glmer* function in the lme4 package, but I wanted to try another glmm (*glmmTMB,* package glmmTMB) to see if I got similar results (p-values, SD, etc). And, I did. According to the models I fitted with *glmmTMB* I got quite similar p-values, R squared, and S.D to mention some. So, in that case, I would say that I managed quite well to reproduce parts of their study.\
+\
+I also wanted to plot the raw data for all bee groups and make it as similar as possible to Figure 3 in their article. Here I did meet a few issues. When I looked at their appendix and their article, there is a mismatch in the total number of bees collected, and with what I got from their dataset. When I looked at the raw data for this article, I had more bees for all groups than they reported. Since there is no explanation of how/if they excluded e.g., outliers or other parts of their data for various reasons, there is no way for me or someone else to know how to interpret this. Was this done so that the data fitted their research question better, or is this justified because the data removed might not contribute to the models? I think this is really interesting regarding the overall issue of their article being bee-decline. To further add to this, the plots with the raw data that I reproduced also do not show any trends of decline, like in their figure. Actually, it is the opposite for most of the bee groups. But, this might also be due to "errors" in relation to how they cleaned the data. In their Figure 3 they used the glmms to fit the line. I did not manage to do this, and I have therefore only included an auto-generated line with *method = glmm.*
+
+Even though I have met some challenges along the way, and I didn't get to fully reproduce everything like I planned, I still feel like I managed to work well with a tricky dataset. There will always be parts of the code/coding that could have been done better, but with little to no explanation on how to work with their dataset, I am pleased with the outcome nevertheless.
+
+3.  **Discuss how well the original paper meets best practice for reproducibility, i.e. what should the authors have done to make their analysis more reproducible, and what they did well.**
+
+There are obviously a few things that the authors could have done to make this attempt run a little more smooth. They could have included their full R-script and dataset to fully show if/how they excluded some data since there is no mention of that in either of the associated files (readme, appendix). The R-script could also be useful to see if there was any easier way of cleaning and filtering out data prior to the glmm. I did spend a lot of time on something that might not actually take that long, so that would be really useful. It is hard to fully reproduce an article when you don't know their code, people will code in various ways, and if I wanted to get the exact same results as them - I need to know exactly what they did.
+
+To some extent I do think they have a great material and methods section, it is not that hard to orientate and understand how to e.g., fit the glmm (e.g., what is response, predictor and random), and it was easy to understand what columns and values were needed to create the "new dataset"; even though it took some time before I saw that I had to use "farmcode" instead of "farm". But this is nothing serious. Taking everything into account, I do think that the authors did a good enough job to make their work reproducible. I did manage to reproduce some parts of their article, but if it's 100% similar, there is no way of me knowing.
+
+## References
+
+Aldercotte, A. H., Simpson, D. T., & Winfree, R. (2022). Crop visitation by wild bees declines over an 8‐year time series: A dramatic trend, or just dramatic between‐year variation? Insect Conservation and Diversity, 15(5), 522-533. https://doi.org/10.1111/icad.12589
