@@ -96,3 +96,35 @@ merge_all1 <- merge(merge4,
 merge_all2 <- mutate_all(merge_all1,
                          ~replace_na(.,0))
 #mutate(count_b = coalesce(count_b, 0))
+
+
+# Fitting modells with glmmTMB
+model_bees <- glmmTMB(count ~ year + (1|farmcode), # glmm all bees
+                      family = nbinom2(link = "log"),
+                      data = merge_all2)
+summary(model_bees)
+
+model_b <- glmmTMB(count_b ~ year + (1|farmcode), # glmm all bombus
+                   family = nbinom2(link = "log"),
+                   data = merge_all2)
+summary(model_b)
+
+model_nb <- glmmTMB(count_nb ~ year + (1|farmcode), # glmm all non-bombus wild bees
+                    family = nbinom2(link = "log"),
+                    data = merge_all2)
+summary(model_nb)
+
+model_l <- glmmTMB(count_l ~ year + (1|farmcode), # glmm all lasioglossum
+                   family = nbinom2(link = "log"),
+                   data = merge_all2)
+summary(model_l)
+
+model_ap <- glmmTMB(count_ap ~ year + (1|farmcode), # glmm all augochlora
+                    family = nbinom2(link = "log"),
+                    data = merge_all2)
+summary(model_ap)
+
+model_c <- glmmTMB(count_c ~ year + (1|farmcode), # glmm all ceratina
+                   family = nbinom2(link = "log"),
+                   data = merge_all2)
+summary(model_c)
