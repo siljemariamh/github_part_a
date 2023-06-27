@@ -128,3 +128,66 @@ model_c <- glmmTMB(count_c ~ year + (1|farmcode), # glmm all ceratina
                    family = nbinom2(link = "log"),
                    data = merge_all2)
 summary(model_c)
+
+
+# Plotting the raw data - all bee groups
+
+# Plot all netted bees
+ggplot(netted_bees, 
+       aes(x = year, 
+           y = count,
+           ymin = 100)) +
+  geom_jitter(width = 0.1,
+              height = 0.1) +
+  theme_classic() +
+  geom_smooth(method = glm)
+
+# Plot all netted non-bombus wild bees
+ggplot(netted_nb, 
+       aes(x = year, 
+           y = count_nb,
+           ymin = 100)) +
+  geom_jitter(width = 0.1,
+              height = 0.1) +
+  theme_classic() +
+  geom_smooth(method = glm)
+
+# Plot all netted bombus
+ggplot(netted_b, 
+       aes(x = year, 
+           y = count_b,
+           ymin = 100)) +
+  geom_jitter(width = 0.1,
+              height = 0.1) +
+  theme_classic() +
+  geom_smooth(method = glm)
+
+# Plot all netted lasioglossum
+ggplot(netted_l, 
+       aes(x = year, 
+           y = count_l,
+           ymin = 100)) +
+  geom_jitter(width = 0.1,
+              height = 0.1) +
+  theme_classic() +
+  geom_smooth(method = glm)
+
+# Plot all netted augochlora
+ggplot(netted_ap, 
+       aes(x = year, 
+           y = count_ap,
+           ymin = 100)) +
+  geom_jitter(width = 0.1,
+              height = 0.1) +
+  theme_classic() +
+  geom_smooth(method = glm)
+
+# Plot all netted ceratina
+ggplot(netted_c, 
+       aes(x = year, 
+           y = count_c,
+           ymin = 100)) +
+  geom_jitter(width = 0.1,
+              height = 0.1) +
+  theme_classic() +
+  geom_smooth(method = glm)
